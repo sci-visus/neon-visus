@@ -1,0 +1,3 @@
+[submodule "visus"]
+	path = visus
+	url = https://github.com/sci-visus/OpenVisusJS.git
