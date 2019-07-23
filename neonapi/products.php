@@ -7,13 +7,10 @@
   $link_array = explode('/',$url);
   $productCode = end($link_array);
 
-  if($productCode != "")
+  if($productCode == "")
   {
-    echo "Selected product code: ".$productCode;
-  }
-  else
-  {
-    echo "requested all products";
+    echo "Request NOT supported: requested all products!";
+    exit;
   }
   
   class MyDB extends SQLite3 {
