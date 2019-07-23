@@ -102,11 +102,11 @@
    // hardcoded example for testing (ignoring database content)
    $reply = array('data' => array('productCode' => $productCode, 'siteCodes' => array(
    	    array( 'siteCode' => 'MOAB', 
-	         'availableMonths' => array('2017-01','2018-02'), 
+	         'availableMonths' => array('2017-09','2018-08'), 
 		 'availableDataUrls' => array('server=https%3A%2F%2Fmolniya.sci.utah.edu%2Fmod_visus%3F&dataset=neon_moab_2017_2018&time=2017', 'server=https%3A%2F%2Fmolniya.sci.utah.edu%2Fmod_visus%3F&dataset=neon_moab_2017_2018&time=2018')
 		 ) ,
             array( 'siteCode' => 'ABBY', 
-	         'availableMonths' => array('2018-02'), 
+	         'availableMonths' => array('2018-07'), 
 		 'availableDataUrls' => array('server=https%3A%2F%2Fmolniya.sci.utah.edu%2Fmod_visus%3F&dataset=neon_abba&time=0')
 		 ) 
 		 )
