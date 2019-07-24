@@ -87,7 +87,7 @@
             <div class="dropdown">
               <button class="btn btn-primary dropdown-toggle navbar-btn" type="button" data-toggle="dropdown">
                 Select Dataset&nbsp;<span class="caret"></span></button>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" id="mydropdown">
                 <li><a href='javascript:loadScenePreset("NEON_MOAB")'>MOAB</a></li>
                 <li><a href='javascript:loadScenePreset("NEON_REDB")'>REDB</a></li>
                 <li><a href='javascript:loadScenePreset("NEON_VEGIDX")'>REDB_VEGIDX</a></li>
@@ -138,47 +138,47 @@
 </div>
 
   <script>
-    let demo_id="NEON_MOAB";
+    var curr_url="";
 
-    function loadScenePreset(preset_name){
-      config_str=''
-      demo_id=preset_name
-
-      if(preset_name=="NEON_MOAB")
-        config_str='server=https%3A%2F%2Fmolniya.sci.utah.edu%2Fmod_visus%3F&dataset=neon_moab_2017_2018&field=data&time=2017&palette=rich&palette_min=NaN&palette_max=NaN'
-
-      else if(preset_name=="NEON_REDB")
-        config_str='server=https%3A%2F%2Fmolniya.sci.utah.edu%2Fmod_visus%3F&dataset=neon_redb&field=DATA&time=0&palette=rich&palette_min=NaN&palette_max=NaN'
-
-      else if(preset_name=="NEON_VEGIDX")
-        config_str='?server=https%3A%2F%2Fmolniya.sci.utah.edu%2Fmod_visus%3F&dataset=neon_redb_vegidx&field=NDVI&time=0&palette=rich&palette_min=0&palette_max=1'
-        
-      else if(preset_name=="NEON_ABBA")
-        config_str='server=https%3A%2F%2Fmolniya.sci.utah.edu%2Fmod_visus%3F&dataset=neon_abba&field=DATA&time=0&palette=rich&palette_min=NaN&palette_max=NaN'
-      
-      HOST_URL="index.html"
-      dataset_url="?"+config_str+"&demoid="+preset_name
-      gotourl = HOST_URL+dataset_url
-      //window.location=gotourl
+    function loadVisusDataset(dataset_url){
+      curr_url=dataset_url
+      console.log("opening "+curr_url)
 
       if(($("#testModal").data('bs.modal') || {})._isShown )
-        $("#visus-frame-modal").attr('src', "visus-frame.html"+dataset_url);
+        $("#visus-frame-modal").attr('src', "visus-frame.html?"+dataset_url);
       else
-        $("#visus-frame").attr('src', "visus-frame.html"+dataset_url);
+        $("#visus-frame").attr('src', "visus-frame.html?"+dataset_url);
 
     }
 
+    $.getJSON('https://neon.visus.org/neonapi/products/DP3.30010.001', function(jsondata) {
+        var $dropdown=$("#mydropdown")
+        var newlist=""
+        $.each(jsondata.data.siteCodes, function (keys, site) {
+            $.each(site.availableMonths, function (keym, month) {
+              url=site.availableDataUrls[keym]
+
+              //console.log(site.siteCode, month, site.availableDataUrls[keym])
+
+              if(curr_url==""){
+                curr_url=url
+                loadVisusDataset(curr_url)
+              }
+
+              newlist+="<li><a href=\"javascript:loadVisusDataset('"+url+"')\">"+site.siteCode+"_"+month+"</a></li>";
+            })
+            
+        })
+
+        $dropdown.html(newlist);
+        
+    });
+    
+    
     function openModal(){
       $("#testModal").modal("show");
-      loadScenePreset(demo_id);
+      loadVisusDataset(curr_url)
     }
-
-    // demo_id = getParameterByName('demoid')
-    // dataset_param = getParameterByName('dataset')
-
-    // if(demo_id==null && dataset_param==null){
-      loadScenePreset(demo_id)
-    //}
 
   </script>
 
