@@ -52,7 +52,7 @@
       echo $db->lastErrorMsg();
    }
 
-   $sql = $db->prepare("SELECT site FROM datasets WHERE productCode = :productCode");
+   $sql = $db->prepare("SELECT site FROM datasets WHERE productCode = :productCode AND publish = 1");
    $sql->bindValue(':productCode', $productCode, SQLITE3_TEXT);
 
    $ret = $sql->execute();
@@ -67,7 +67,7 @@
      
      $site = $row['site'];
 
-     $sqlsite = $db->prepare("SELECT * FROM datasets WHERE productCode = :productCode AND site = :site");
+     $sqlsite = $db->prepare("SELECT * FROM datasets WHERE productCode = :productCode AND site = :site AND publish = 1");
      $sqlsite->bindValue(':productCode', $productCode, SQLITE3_TEXT);
      $sqlsite->bindValue(':site', $site, SQLITE3_TEXT);
 
@@ -97,8 +97,8 @@
 
    $db->close();
 
-   //$reply = array('data' => array('productCode' => $productCode, 'siteCodes' => array_values($siteCodes)));
-
+   $reply = array('data' => array('productCode' => $productCode, 'siteCodes' => array_values($siteCodes)));
+/*
    // hardcoded example for testing (ignoring database content)
    $reply = array('data' => array('productCode' => $productCode, 'siteCodes' => array(
    	    array( 'siteCode' => 'MOAB', 
@@ -111,13 +111,11 @@
 		 ) 
 		 )
             ) );
+   */
 
    header("Access-Control-Allow-Origin: *");
    header('Content-Type: application/json');
    echo json_encode($reply);
-   
-   
-   //{"data":
-   //{"productCode":"DP3.30010.001","0":"siteCodes","1":[{"siteCode":"ORNL","availableMonths":["2016_2"],"availableDataUrls":["&server=https%3A%2F%2Fdataportal.sci.utah.edu&dataset=P3.30010.001-D07-2016_ORNL_2-L3-Camera-Mosaic-V1"]},{"siteCode":"TALL","availableMonths":["2019_5","2018_4","2017_3"],
+
 ?>
 
