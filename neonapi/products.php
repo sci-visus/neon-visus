@@ -112,9 +112,9 @@
 		 )
             ) );
 
-   echo "<pre>";
-   echo json_encode($reply, JSON_PRETTY_PRINT);
-   echo "</pre>";
+   header('Content-Type: application/json');
+   echo json_encode($reply);
+   
    
    //{"data":
    //{"productCode":"DP3.30010.001","0":"siteCodes","1":[{"siteCode":"ORNL","availableMonths":["2016_2"],"availableDataUrls":["&server=https%3A%2F%2Fdataportal.sci.utah.edu&dataset=P3.30010.001-D07-2016_ORNL_2-L3-Camera-Mosaic-V1"]},{"siteCode":"TALL","availableMonths":["2019_5","2018_4","2017_3"],
