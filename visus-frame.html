@@ -156,10 +156,15 @@ h6: {
 }
 
 #sidebar-container {
-    min-height: 100vh;   
-    background-color: #f3f5f5;
+    /*min-height: 100vh;
+    background-color: #f3f5f5;*/
     padding: 0;
-    float: right;
+    position:absolute;
+    right: 10%;
+    top:0%;
+    z-index:2;
+    /*float: right;*/
+
 }
 
 /* Sidebar sizes when expanded and expanded */
@@ -238,13 +243,13 @@ small {
           <!-- Logo -->
             <li class="list-group-item logo-separator d-flex justify-content-center">
               <div class="row">
-                <div class="col">
+                <div class="col" style="margin-left: 60px;">
                   <img src='neon-logo.png' width="60" class="menu-collapsed"/> 
                 </div>
                 <div class="col" style="text-align: left">
                   <button type="button" data-toggle="sidebar-colapse" class="btn btn-sm">
                       <div class="d-flex w-100 justify-content-start align-items-center">
-                        <span id="collapse-text" class="menu-collapsed text-muted">Collapse&nbsp;&nbsp;&nbsp;</span>
+                        <span id="collapse-text" class="menu-collapsed text-muted"></span>
                         <span id="collapse-icon" class="fa fa-2x mr-3 text-muted"></span>
                       </div>
                   </button>
@@ -373,11 +378,12 @@ small {
             </li>
 
             
+            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed" > 
+                <small style="margin-left: 10px;">powered by <a href="https://www.visus.org">OpenVisus &nbsp;&nbsp;&nbsp;<img src='visus.org-logo.png 'width="50"/> </a></small>
+            </li>
 
             <!-- Separator with title -->
-            <li class="list-group-item text-muted align-items-center menu-collapsed" style="text-align: right;"> 
-                <small >powered by <a href="https://www.visus.org">OpenVisus &nbsp;&nbsp;&nbsp;<img src='visus.org-logo.png 'width="50"/> </a></small>
-            </li>
+            
             
         </ul><!-- List Group END-->
     </div><!-- sidebar-container END -->
