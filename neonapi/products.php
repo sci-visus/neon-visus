@@ -52,7 +52,7 @@
       echo $db->lastErrorMsg();
    }
 
-   $sql = $db->prepare("SELECT site FROM datasets WHERE productCode = :productCode AND publish = 1");
+   $sql = $db->prepare("SELECT site FROM datasets WHERE productCode = :productCode AND publish = 1 ORDER BY site ASC, year ASC, month ASC;");
    $sql->bindValue(':productCode', $productCode, SQLITE3_TEXT);
 
    $ret = $sql->execute();

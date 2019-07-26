@@ -89,7 +89,7 @@
             <div class="dropdown">
               <button class="btn btn-primary dropdown-toggle navbar-btn" type="button" data-toggle="dropdown">
                 Select Dataset&nbsp;<span class="caret"></span></button>
-              <ul class="dropdown-menu" id="mydropdown">
+              <ul class="dropdown-menu" id="mydropdown"  style="max-height:250px;overflow:auto">
               </ul>
            </div>
           </li>
@@ -150,6 +150,7 @@
     }
 
     $.getJSON('https://neon.visus.org/neonapi/products/DP3.30010.001', function(jsondata) {
+      //$.getJSON('http://127.0.0.1:8000/neonapi/products.php/DP3.30010.001', function(jsondata) {
         var $dropdown=$("#mydropdown")
         var newlist=""
         $.each(jsondata.data.siteCodes, function (keys, site) {
