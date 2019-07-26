@@ -93,7 +93,6 @@ h6: {
   fontSize: '1.15rem',
 }
 
-
 .slidecontainer {
   width: 100%; /* Width of the outside container */
 }
@@ -233,8 +232,28 @@ small {
 
 </head>
   
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand order-md-last" href="https://www.visus.org" target="blank"><small>powered by OpenVisus &nbsp;&nbsp;&nbsp;<img src='visus.org-logo.png 'width="70"/></small></a>
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="nav navbar-nav">
+            <li>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#downloadModal" onclick="setDefaultResolution()"><span class="fa fa-download"></span>&nbsp;&nbsp;Download</button>
+              <button type="button" class="btn btn-info" data-toggle="modal" id='download_btn' data-target="#shareModal" onclick="shareLink()"><span class="fa fa-external-link-alt"></span>&nbsp;&nbsp;Share</button>
+            </li>
+        </ul>
 
-  <div class="container">
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" hidden>
 
       <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
       <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
@@ -372,16 +391,16 @@ small {
                 <small><span class="fa fa-download fa-fw mr-3"></span> Download & Share</small>
             </li>
 
-            <li class="list-group-item text-muted align-items-center menu-collapsed" >
-                <button type="button" class="btn btn-primary" style="width:49%" data-toggle="modal" data-target="#downloadModal" onclick="setDefaultResolution()">Download</button>
-                    <button type="button" class="btn btn-info" style="width:49%" data-toggle="modal" id='download_btn' data-target="#shareModal" onclick="shareLink()">Share</button>
+<!--             <li class="list-group-item text-muted align-items-center menu-collapsed" >
+                 <button type="button" class="btn btn-primary" style="width:49%" data-toggle="modal" data-target="#downloadModal" onclick="setDefaultResolution()">Download</button>
+                    <button type="button" class="btn btn-info" style="width:49%" data-toggle="modal" id='download_btn' data-target="#shareModal" onclick="shareLink()">Share</button> 
             </li>
 
             
             <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed" > 
                 <small style="margin-left: 10px;">powered by <a href="https://www.visus.org">OpenVisus &nbsp;&nbsp;&nbsp;<img src='visus.org-logo.png 'width="50"/> </a></small>
             </li>
-
+ -->
             <!-- Separator with title -->
             
             
@@ -392,8 +411,8 @@ small {
 
   <div id="viewer">
     <div class="container">
-      <div class="row row-centered pos">
-        <div id='2dCanvas' style='background: #f3f5f5; width:100%'></div>
+      <div class="row row-centered pos" style="margin-top:70px">
+        <div id='2dCanvas' style='background-color: #f3f5f5; width:100%;height:100%;position: absolute;left:0px;margin:0'></div>
         <div class="col-lg h-100"><canvas id='3dCanvas' width='1000px' height='600px'></canvas></div>
       </div>
     </div>
