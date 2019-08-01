@@ -37,7 +37,7 @@
 
   if($productCode == "" or $productCode == "products.php" or $productCode == "products")
   {
-    $reply = array('data' => array("DP3.30010.001"));
+    $reply = array('data' => array("DP3.30010.001")); // TODO get list from DB
     echo json_encode($reply);
     die();
   } else if($productCode != "DP3.30010.001"){ // TODO check DB before giving a 404 answer!
