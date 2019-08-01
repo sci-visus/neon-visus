@@ -261,7 +261,7 @@ small {
         </ul>
         <ul class="nav navbar-nav navbar-logo mr-auto">
           <li class="nav-item">
-            <small id="titlelbl" class="nav-link" href="#"><b>Title</b></small>
+            <small id="titlelbl" class="nav-link" href="#"><b></b></small>
           </li>
         </ul>
 
@@ -727,7 +727,7 @@ small {
 
   var title=getUrlParameter('title');
   if(title)
-    $("#titlelbl").html(decodeURI(title));
+    $("#titlelbl").html("<b>"+decodeURI(title)+"</b>");
   
   </script>
 
