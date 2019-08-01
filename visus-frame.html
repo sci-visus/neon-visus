@@ -259,6 +259,11 @@ small {
               <button type="button" class="btn btn-sm btn-info" data-toggle="modal" id='download_btn' data-target="#shareModal" onclick="shareLink()" hidden><span class="fa fa-external-link-alt"></span>&nbsp;&nbsp;Share</button>
             </li>
         </ul>
+        <ul class="nav navbar-nav navbar-logo mr-auto">
+          <li class="nav-item">
+            <small id="titlelbl" class="nav-link" href="#"><b>Title</b></small>
+          </li>
+        </ul>
 
       </div>
     </div>
@@ -630,6 +635,21 @@ small {
   <script>
     
 
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
+
     function rectToSelection(bounds){
       rect=visus1.osd.viewport.viewportToImageRectangle(bounds.x, bounds.y, bounds.width, bounds.height)
       rect=new OpenSeadragon.Rect(Math.round(rect.x),Math.round(rect.y),Math.round(rect.width),Math.round(rect.height));
@@ -703,6 +723,11 @@ small {
   $('#downloadModal').onLoad = function (){
     updateDownloadResolution($('#edit_resolution').val);
   };
+
+
+  var title=getUrlParameter('title');
+  if(title)
+    $("#titlelbl").html(decodeURI(title));
   
   </script>
 
