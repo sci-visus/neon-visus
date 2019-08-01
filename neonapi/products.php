@@ -35,10 +35,15 @@
   $link_array = explode('/',$url);
   $productCode = end($link_array);
 
-  if($productCode == "")
+  if($productCode == "" or $productCode == "products.php" or $productCode == "products")
   {
-    echo "Request NOT supported: requested all products!";
-    exit;
+    $reply = array('data' => array("DP3.30010.001"));
+    echo json_encode($reply);
+    die();
+  } else if($productCode != "DP3.30010.001"){ // TODO check DB before giving a 404 answer!
+    http_response_code(404);
+    //include('my_404.php'); // provide your own HTML for the error page
+    die();
   }
   
   class MyDB extends SQLite3 {
