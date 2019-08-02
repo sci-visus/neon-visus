@@ -428,7 +428,7 @@ small {
   <div id="viewer">
     <div class="container">
       <div class="row row-centered pos">
-        <div id='2dCanvas' style='background-color: black; width:100%;height:100%;position: absolute;left:0px;'></div>
+        <div id='2dCanvas' style='background-color: black; width:100%;height:85vh;position: absolute;left:0px;margin-top:40px'></div>
         <div class="col-lg h-100"><canvas id='3dCanvas' width='1000px' height='600px'></canvas></div>
       </div>
     </div>
@@ -725,10 +725,6 @@ small {
   $('#downloadModal').onLoad = function (){
     updateDownloadResolution($('#edit_resolution').val);
   };
-
-  // $('#2dCanvas_osd').resize = function (){
-  //   $('#2dCanvas_osd').css("margin-top","40px");
-  // };
 
   var title=getUrlParameter('title');
   if(title)
