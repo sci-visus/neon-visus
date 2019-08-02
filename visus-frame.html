@@ -256,7 +256,7 @@ small {
         <ul class="navbar-nav mr-auto">
             <li>
               <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#downloadModal" onclick="setDefaultResolution()"><span class="fa fa-download"></span>&nbsp;&nbsp;Download</button>
-              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" id='download_btn' data-target="#shareModal" onclick="shareLink()" hidden><span class="fa fa-external-link-alt"></span>&nbsp;&nbsp;Share</button>
+              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#shareModal" onclick="shareLink()" hidden><span class="fa fa-external-link-alt"></span>&nbsp;&nbsp;Share</button>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-logo mr-auto">
@@ -427,8 +427,8 @@ small {
 
   <div id="viewer">
     <div class="container">
-      <div class="row row-centered pos" style="margin-top:40px">
-        <div id='2dCanvas' style='background-color: black; width:100%;height:100%;position: absolute;left:0px;margin:0'></div>
+      <div class="row row-centered pos">
+        <div id='2dCanvas' style='background-color: black; width:100%;height:100%;position: absolute;left:0px;'></div>
         <div class="col-lg h-100"><canvas id='3dCanvas' width='1000px' height='600px'></canvas></div>
       </div>
     </div>
@@ -468,20 +468,6 @@ small {
       $('#collapse-icon').toggleClass('fa-angle-double-right fa-angle-double-left');
   }
 
-  (function() {
-    var canvas = document.getElementById('2dCanvas');
-           // context = canvas.getContext('2d');
-
-    // resize the canvas to fill browser window dynamically
-    window.addEventListener('resize', resizeCanvas, false);
-
-    function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-
-})();
 </script>
 
 <body>
@@ -510,6 +496,9 @@ small {
                   </div>
                   <div class="row-md-6 text-center">
                     <label>Size:&nbsp;</label><label id="size_est" > ... KB </label>
+                  </div>
+                  <div class="alert alert-warning" role="alert" id="download_alert" hidden>
+                    It is currently not allowed to download large amount of data from here.
                   </div>
                 </div>
               </div>
@@ -677,7 +666,7 @@ small {
 
     function updateDownloadResolution(value){
       sel_factor = 1
-
+      sel_size = 0
       if(!selection || selection.isSelecting==false){
         bounds=visus1.getBounds()
         rectToSelection(bounds)
@@ -695,6 +684,19 @@ small {
       console.log("sel_factor", sel_factor)
 
       onResolutionChange(value, sel_factor)
+
+      // Force max resolution to avoid crazy download requests
+      var curr_size=parseFloat($('#size_est').text().substring(1,$('#size_est').text().length-2))
+      console.log("curr "+curr_size)
+      if(curr_size > 150.0) {
+        $("#download_btn").prop("disabled", true);
+        $("#download_alert").prop("hidden", false);
+      }
+      else{
+        $("#download_btn").prop("disabled", false);
+        $("#download_alert").prop("hidden", true);
+      }
+
     }
 
    function copyClick() {
@@ -724,11 +726,16 @@ small {
     updateDownloadResolution($('#edit_resolution').val);
   };
 
+  // $('#2dCanvas_osd').resize = function (){
+  //   $('#2dCanvas_osd').css("margin-top","40px");
+  // };
 
   var title=getUrlParameter('title');
   if(title)
     $("#titlelbl").html("<b>"+decodeURI(title)+"</b>");
   
+  
+
   </script>
 
 </body>
