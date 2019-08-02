@@ -32,6 +32,9 @@
 
   //echo "Request: ", $url, " ";
 
+  header("Access-Control-Allow-Origin: *");
+  header('Content-Type: application/json');
+
   $link_array = explode('/',$url);
   $productCode = end($link_array);
 
@@ -118,8 +121,6 @@
             ) );
    */
 
-   header("Access-Control-Allow-Origin: *");
-   header('Content-Type: application/json');
    echo json_encode($reply);
 
 ?>
