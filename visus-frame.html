@@ -246,7 +246,7 @@ small {
 <body>
   <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand order-md-last" href="https://www.visus.org" target="blank"><small>powered by OpenVisus &nbsp;&nbsp;&nbsp;<img src='visus.org-logo.png 'width="50"/></small></a>
+      <a class="navbar-brand order-md-last" href="https://www.visus.org" target="blank"><small>powered by OpenVisus<img src='visus.org-logo.png 'width="50"/></small></a>
       <div class="navbar-header">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -255,7 +255,29 @@ small {
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto">
 
-            <li id="field_controls">
+            
+          
+            <li style="padding-left: 5px">
+              <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#downloadModal" onclick="setDefaultResolution()"><span class="fa fa-download"></span>&nbsp;&nbsp;Download</button>
+              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#shareModal" onclick="shareLink()" hidden><span class="fa fa-external-link-alt"></span>&nbsp;&nbsp;Share</button>
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-logo mr-auto">
+          <li class="nav-item">
+            <small id="titlelbl" class="nav-link" href="#"><b></b></small>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-bottom">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="control-navbar">
+        <ul class="navbar-nav mr-auto">
+          <li id="field_controls">
               <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
                   <span class="input-group-text form-control-sm">Field</span>
@@ -317,21 +339,10 @@ small {
 
                 </div>
               </li>
-          
-            <li style="padding-left: 5px">
-              <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#downloadModal" onclick="setDefaultResolution()"><span class="fa fa-download"></span>&nbsp;&nbsp;Download</button>
-              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#shareModal" onclick="shareLink()" hidden><span class="fa fa-external-link-alt"></span>&nbsp;&nbsp;Share</button>
-            </li>
-
         </ul>
-        <ul class="nav navbar-nav navbar-logo mr-auto">
-          <li class="nav-item">
-            <small id="titlelbl" class="nav-link" href="#"><b></b></small>
-          </li>
-        </ul>
-
       </div>
     </div>
+
   </nav>
 
   <div class="container" hidden>
