@@ -254,7 +254,8 @@ small {
       </div>
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto">
-            <li>
+
+            <li id="field_controls">
               <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
                   <span class="input-group-text form-control-sm">Field</span>
@@ -264,7 +265,7 @@ small {
                 </div>
               </div>
             </li>
-            <li style="padding-left: 5px">
+            <li style="padding-left: 5px" id="colormap_controls">
               <!-- <button id="palettebtn" class="btn btn-warning btn-sm navbar-btn"><span class="fa fa-palette"></span></button> -->
               <div class="input-group input-group-sm">
                     <div class="input-group-prepend">
@@ -302,20 +303,21 @@ small {
                     </div>
                   </div>
             </li>
-            <li style="padding-left: 5px">
-                <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text form-control-sm">Range</span>
-                    </div>
-                    <div class="input-group-append">
-                      <input id='palette_min' type="text" size=8 onchange='onPaletteChange();' class="form-control form-control-sm" placeholder="Min">
-                    </div>
-                    <div class="input-group-append">
-                      <input id='palette_max' type="text" size=8 onchange='onPaletteChange();' class="form-control form-control-sm" placeholder="Max">
-                    </div>
-
+            <li style="padding-left: 5px" id="range_controls">
+              <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm">Range</span>
                   </div>
-                </li>
+                  <div class="input-group-append">
+                    <input id='palette_min' type="text" size=8 onchange='onPaletteChange();' class="form-control form-control-sm" placeholder="Min">
+                  </div>
+                  <div class="input-group-append">
+                    <input id='palette_max' type="text" size=8 onchange='onPaletteChange();' class="form-control form-control-sm" placeholder="Max">
+                  </div>
+
+                </div>
+              </li>
+          
             <li style="padding-left: 5px">
               <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#downloadModal" onclick="setDefaultResolution()"><span class="fa fa-download"></span>&nbsp;&nbsp;Download</button>
               <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#shareModal" onclick="shareLink()" hidden><span class="fa fa-external-link-alt"></span>&nbsp;&nbsp;Share</button>
@@ -851,7 +853,18 @@ small {
   if(title)
     $("#titlelbl").html("<b>"+decodeURI(title)+"</b>");
   
-  
+  var dataname=getUrlParameter('dataset')
+  console.log("DATASET: "+dataname)
+  if (dataname.includes("VegIndices")){
+    $('#field_controls').show();
+    $('#colormap_controls').show();
+    $('#range_controls').show();
+  }
+  else{
+    $('#field_controls').hide();
+    $('#colormap_controls').hide();
+    $('#range_controls').hide();
+  }
 
   </script>
 

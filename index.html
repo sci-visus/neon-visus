@@ -86,16 +86,26 @@
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="nav navbar-nav">
           <li>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text form-control-sm">DataProduct</span>
+                </div>
+                <div class="input-group-append input-group-sm">
+                  <input id='dataproductid' type="text" value="DP3.30022.001" onchange='onDataProductChange(this.value);' class='form-control form-control-sm'></input> 
+                </div>
+              </div>
+          </li>
+          <li  style="padding-left: 5px">
             <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle navbar-btn" type="button" data-toggle="dropdown">
+              <button class="btn btn-primary btn-sm dropdown-toggle navbar-btn" type="button" data-toggle="dropdown">
                 Select Dataset&nbsp;<span class="caret"></span></button>
               <ul class="dropdown-menu" id="mydropdown"  style="max-height:250px;overflow:auto">
               </ul>
            </div>
           </li>
             
-            <li>
-              <button class="btn btn-success navbar-btn" type="button" data-toggle="testModal" onClick='javascript:openModal()'>Open in Modal</button>
+            <li  style="padding-left: 5px">
+              <button class="btn btn-success btn-sm navbar-btn" type="button" data-toggle="testModal" onClick='javascript:openModal()'>Open in Modal</button>
             </li>
         </ul>
 
@@ -149,8 +159,10 @@
 
     }
 
-    $.getJSON('https://neon.visus.org/neonapi/products/DP3.30022.001', function(jsondata) {
-    //$.getJSON('http://127.0.0.1:8000/neonapi/products.php/DP3.30022.001', function(jsondata) {
+    function onDataProductChange(pid){
+      $.getJSON('https://neon.visus.org/neonapi/products/'+pid, function(jsondata) {
+    //  $.getJSON('http://127.0.0.1:8000/neonapi/products.php/'+pid, function(jsondata) {
+        
         var $dropdown=$("#mydropdown")
         var newlist=""
         $.each(jsondata.data.siteCodes, function (keys, site) {
@@ -170,9 +182,13 @@
         })
 
         $dropdown.html(newlist);
+
         
-    });
-    
+      });
+    }
+
+    onDataProductChange("DP3.30022.001")
+
     
     function openModal(){
       $("#testModal").modal("show");
