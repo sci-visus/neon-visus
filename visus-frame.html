@@ -255,9 +255,72 @@ small {
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto">
             <li>
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text form-control-sm">Field</span>
+                </div>
+                <div class="input-group-append input-group-sm">
+                  <select id='field' onchange='onFieldChange(this.value);' class='form-control form-control-sm'></select> 
+                </div>
+              </div>
+            </li>
+            <li style="padding-left: 5px">
+              <!-- <button id="palettebtn" class="btn btn-warning btn-sm navbar-btn"><span class="fa fa-palette"></span></button> -->
+              <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text form-control-sm">Colormap</span>
+                    </div>
+                    <div class="input-group-append input-group-sm">
+                      <select id='palette' onchange='onPaletteChange();' class='custom-select'>
+                        <option value='' selected="selected"></option>
+                        <option value='rich'>rich</option>
+                        <option value='hsl'>hsl</option>
+                        <option value='banded'>banded</option>
+                        <option value='bry'>bry</option>
+                        <option value='bgry'>bgry</option> 
+                        <option value='gamma'>gamma</option>
+                        <option value='hot1'>hot1</option>
+                        <option value='hot2'>hot2</option>
+                        <option value='ice'>ice</option>
+                        <option value='lighthues'>lighthues</option> 
+                        <option value='smoothrich'>smoothrich</option>
+                        <option value='lut16'>lut16</option>
+                        <option value='BlueGreenDivergent'>BlueGreenDivergent</option>
+                        <option value='AsymmetricBlueGreenDivergent'>AsymmetricBlueGreenDivergent</option> 
+                        <option value='GreenGold'>GreenGold</option>
+                        <option value='LinearGreen'>LinearGreen</option>
+                        <option value='LinearTurquois'>LinearTurquois</option>
+                        <option value='MutedBlueGreen'>MutedBlueGreen</option>
+                        <option value='ExtendedCoolWarm'>ExtendedCoolWarm</option>
+                        <option value='AsymmetricBlueOrangeDivergent'>AsymmetricBlueOrangeDivergent</option>
+                        <option value='LinearYellow'>LinearYellow</option>
+                        <option value='LinearGray5'>LinearGray5</option>
+                        <option value='LinearGray4'>LinearGray4</option>  
+                        <option value='grayopaque'>grayopaque</option>
+                        <option value='graytransparent'>graytransparent</option> 
+                      </select>
+                    </div>
+                  </div>
+            </li>
+            <li style="padding-left: 5px">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text form-control-sm">Range</span>
+                    </div>
+                    <div class="input-group-append">
+                      <input id='palette_min' type="text" size=8 onchange='onPaletteChange();' class="form-control form-control-sm" placeholder="Min">
+                    </div>
+                    <div class="input-group-append">
+                      <input id='palette_max' type="text" size=8 onchange='onPaletteChange();' class="form-control form-control-sm" placeholder="Max">
+                    </div>
+
+                  </div>
+                </li>
+            <li style="padding-left: 5px">
               <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#downloadModal" onclick="setDefaultResolution()"><span class="fa fa-download"></span>&nbsp;&nbsp;Download</button>
               <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#shareModal" onclick="shareLink()" hidden><span class="fa fa-external-link-alt"></span>&nbsp;&nbsp;Share</button>
             </li>
+
         </ul>
         <ul class="nav navbar-nav navbar-logo mr-auto">
           <li class="nav-item">
@@ -305,21 +368,21 @@ small {
             <!-- hiding advanced settings -->
             <div hidden>
 
-            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed"> 
+            <!-- <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed"> 
                 <small><span class="fa fa-database fa-fw mr-3"></span> Field</small>
             </li>
-            <!-- Submenu content -->
+             
             <li class="list-group-item text-muted align-items-center menu-collapsed"> 
                 <div class="input-group input-group-sm">
-                  <!-- <div class="input-group-prepend">
+                  <div class="input-group-prepend">
                     <span class="input-group-text form-control-sm">Field</span>
-                  </div> -->
+                  </div>
                    <div class="input-group-append input-group-sm" style="width:100%" >
                      <select id='field' onchange='onFieldChange(this.value);' class='custom-select'></select> 
                    </div>
                  </div>
                     
-            </li>
+            </li> -->
 
             <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed"> 
                 <small><span class="fa fa-palette fa-fw mr-3"></span> Palette</small>
@@ -332,7 +395,7 @@ small {
                   <!-- <div class="input-group-prepend">
                     <span class="input-group-text form-control-sm">Color</span>
                   </div> -->
-                  <div class="input-group-append input-group-sm">
+                 <!--  <div class="input-group-append input-group-sm">
                     <select id='palette' onchange='onPaletteChange();' class='custom-select'>
                       <option value='NaN' selected="selected"></option>
                       <option value='rich'>rich</option>
@@ -363,7 +426,7 @@ small {
                       <option value='scivis_magic_colormap'>magic color map</option>
                     </select>
                   </div>
-                <!-- </div> -->
+                 </div> 
               <br />
                <div class="input-group input-group-sm" >
                   <div class="input-group-prepend">
@@ -375,7 +438,7 @@ small {
                     <div class="form-group input-group-append col-xs-6" style="width:35%">
                       <input id='palette_max' type="text" size=7 onchange='onPaletteChange();' class="form-control form-control-sm" placeholder="Max"/>
                     </div>
-                </div> 
+                </div>  -->
             </li>            
            <!--  <a href="#" class="bg-light list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
@@ -435,6 +498,26 @@ small {
   </div>
 
 <script>
+
+  $('#palettebtn').click(function() {
+      // reset modal if it isn't visible
+      if (!($('.modal.in').length)) {
+        $('#palette-modal-dialog').css({
+          top: 0,
+          left: $('#palettebtn').position().left-50
+        });
+      }
+
+      $('#paletteModal').modal({
+        backdrop: false,
+        show: true
+      });
+
+      $('#palette-modal-dialog').draggable({
+        handle: ".modal-body"
+      });
+    });
+
   var selection_box= new Array();
   // Selection widget
   var selection;
@@ -546,6 +629,44 @@ small {
             </div>
           </div>
         </div>
+
+        <div id="paletteModal" class="modal fade myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div id="palette-modal-dialog" class="modal-dialog my-modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                  
+
+                  <div id='resolution_panel' class="input-group input-group-sm" style="padding-top:5px">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Resol.</span>
+                    </div>
+                    <div class="input-group-append">
+                      <input id='edit_resolution' type="text" size="2" onchange='onResolutionChange(this.value);'/>
+                    </div>
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <input id='resolutionview' type='range' step='1' min='0' step='1' max='33' class="custom-range" oninput='onResolutionChange(this.value);'/> 
+                      </div>
+                    </div>
+                    <!-- <div class="input-group-append">
+                      <label class="input-group-text" id="size_est"> ... KB </label>
+                    </div> -->
+                    <div class="input-group-append">
+                      <button id='view_btn' type='button' class="btn btn-primary btn-sm" onclick='onViewResolution()'>Update</button> 
+                    </div>
+                  </div>
+                  
+              </div>
+
+              <div class="modal-footer">
+                <div id="range_panel" style="color:white; padding-bottom:5px">
+                    <span class="form-control-sm">Computed Range <span class="form-control-sm" id="comp_range"> [...] </span></span>
+                </div>
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> 
   
       
       <table hidden> 
