@@ -91,12 +91,13 @@
      while($rowsite = $retsite->fetchArray(SQLITE3_ASSOC) ) {
        $dataset = $rowsite['dataset'];
        $server = $rowsite['server'];
+       $params = $rowsite['params'];
        $year = $rowsite['year'];
        $month = $rowsite['month'];
        $pc = $rowsite['productCode'];
        
        array_push($availMonths, $year."-".sprintf('%02d', $month));
-       array_push($availUrls, "server=".$server."&dataset=".urlencode($dataset));
+       array_push($availUrls, "server=".$server."&dataset=".urlencode($dataset).urlencode($params));
      }
 
      array_push($siteCodes, array('siteCode' => $site, 'availableMonths' => array_values($availMonths), 'availableDataUrls' => array_values($availUrls)));

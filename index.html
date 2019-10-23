@@ -161,7 +161,7 @@
 
     function onDataProductChange(pid){
       $.getJSON('https://neon.visus.org/neonapi/products/'+pid, function(jsondata) {
-    //  $.getJSON('http://127.0.0.1:8000/neonapi/products.php/'+pid, function(jsondata) {
+      //$.getJSON('http://127.0.0.1:8000/neonapi/products.php/'+pid, function(jsondata) {
         
         var $dropdown=$("#mydropdown")
         var newlist=""
