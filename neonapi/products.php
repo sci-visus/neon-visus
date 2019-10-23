@@ -97,7 +97,7 @@
        $pc = $rowsite['productCode'];
        
        array_push($availMonths, $year."-".sprintf('%02d', $month));
-       array_push($availUrls, "server=".$server."&dataset=".urlencode($dataset).urlencode($params));
+       array_push($availUrls, "server=".$server."&dataset=".urlencode($dataset).$params);
      }
 
      array_push($siteCodes, array('siteCode' => $site, 'availableMonths' => array_values($availMonths), 'availableDataUrls' => array_values($availUrls)));
