@@ -40,10 +40,10 @@
   
   if($productCode == "" or $productCode == "products.php" or $productCode == "products")
   {
-    $reply = array('data' => array("DP3.30010.001","DP3.30022.001")); // TODO get list from DB
+    $reply = array('data' => array("DP3.30010.001","DP3.30026.001")); // TODO get list from DB
     echo json_encode($reply);
     die();
-  } else if($productCode != "DP3.30010.001" and $productCode != "DP3.30022.001"){ // TODO check DB before giving a 404 answer!
+  } else if($productCode != "DP3.30010.001" and $productCode != "DP3.30026.001"){ // TODO check DB before giving a 404 answer!
     http_response_code(404);
     //include('my_404.php'); // provide your own HTML for the error page
     die();
